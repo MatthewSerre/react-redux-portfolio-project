@@ -5,7 +5,6 @@ import SearchableAmiibosContainer from './containers/searchableAmiibosContainer'
 function App() {
   return (
     <div className="App">
-        Hello.
         <SearchableAmiibosContainer />
     </div>
   );
