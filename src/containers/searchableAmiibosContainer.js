@@ -13,17 +13,12 @@ class SearchableAmiibosContainer extends React.Component {
         };
       }
 
-    handleQuery = event => {
-        this.search(event.target.value)
+    handleCharacterSelect = event => {
+        this.filter(event.target.value)
     }
 
-    handleSubmit = event => {
-        event.preventDefault()
-        this.search(this.state.searchTerm)
-    }
-
-    search(searchTerm) {
-        fetch(URL + searchTerm)
+    filter(characterName) {
+        fetch(URL + characterName)
         .then(response => response.json())
         .then(
             (result) => {
@@ -38,17 +33,7 @@ class SearchableAmiibosContainer extends React.Component {
         return (
             <div>
                 <div>
-                    {/* <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label>
-                            <input id="search" name="search" type="text" onChange={this.handleQuery} value={this.state.searchTerm} />
-                            </label>
-                        </div>
-                        <div>
-                            <button type="submit">Search</button>
-                        </div>
-                    </form> */}
-                    <select onChange={this.handleQuery}>
+                    <select onChange={this.handleCharacterSelect}>
                         <option value="select">Select</option>
                         <option value="mario">Mario</option>
                         <option value="Peach">Peach</option>
@@ -57,8 +42,7 @@ class SearchableAmiibosContainer extends React.Component {
                 <AmiibosList amiibos={this.state.items} />
             </div>
             );
-        }
-      
+        }   
 }
 
 export default SearchableAmiibosContainer
