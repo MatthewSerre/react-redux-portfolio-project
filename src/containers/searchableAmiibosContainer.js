@@ -14,7 +14,6 @@ class SearchableAmiibosContainer extends React.Component {
       }
 
     handleQuery = event => {
-        console.log(event.target.value)
         this.search(event.target.value)
     }
 
