@@ -9,7 +9,7 @@ class AmiibosList extends React.Component {
             <div>
                 <ul>
               {amiibos.map(item => (
-                <li>
+                <li key={item.tail}>
                   {item.character} - {item.gameSeries} - {item.amiiboSeries} - <img src={item.image} alt={item.character} />
                 </li>
               ))}

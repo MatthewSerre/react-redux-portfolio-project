@@ -13,10 +13,9 @@ class SearchableAmiibosContainer extends React.Component {
         };
       }
 
-      handleQuery = event => {
-        this.setState({
-            searchTerm: event.target.value
-        })
+    handleQuery = event => {
+        console.log(event.target.value)
+        this.search(event.target.value)
     }
 
     handleSubmit = event => {
@@ -26,45 +25,21 @@ class SearchableAmiibosContainer extends React.Component {
 
     search(searchTerm) {
         fetch(URL + searchTerm)
-          .then(response => response.json())
-          .then(
+        .then(response => response.json())
+        .then(
             (result) => {
-              this.setState({
+                this.setState({
                 items: result.amiibo
-              });
+            });
             }
-          )
-      }
-    
-    //   componentDidMount() {
-    //     fetch(URL)
-    //       .then(res => res.json())
-    //       .then(
-    //         (result) => {
-    //           this.setState({
-    //             isLoaded: true,
-    //             items: result.amiibo
-    //           });
-    //         },
-    //         // Note: it's important to handle errors here
-    //         // instead of a catch() block so that we don't swallow
-    //         // exceptions from actual bugs in components.
-    //         (error) => {
-    //           this.setState({
-    //             isLoaded: true,
-    //             error
-    //           });
-    //         }
-    //       )
-    //   }
+        )
+    }
 
-    
-      render() {
-
+    render() {
         return (
             <div>
                 <div>
-                    <form onSubmit={this.handleSubmit}>
+                    {/* <form onSubmit={this.handleSubmit}>
                         <div>
                             <label>
                             <input id="search" name="search" type="text" onChange={this.handleQuery} value={this.state.searchTerm} />
@@ -73,11 +48,16 @@ class SearchableAmiibosContainer extends React.Component {
                         <div>
                             <button type="submit">Search</button>
                         </div>
-                    </form>
+                    </form> */}
+                    <select onChange={this.handleQuery}>
+                        <option value="select">Select</option>
+                        <option value="mario">Mario</option>
+                        <option value="Peach">Peach</option>
+                    </select>
                 </div>
                 <AmiibosList amiibos={this.state.items} />
             </div>
-          );
+            );
         }
       
 }
